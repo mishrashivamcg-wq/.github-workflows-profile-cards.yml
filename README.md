@@ -1,1 +1,27 @@
 # .github-workflows-profile-cards.yml
+
+
+
+name: Generate GitHub Profile Cards
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  profile-cards:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Generate profile cards
+        uses: seijikohara/profile-cards-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          username: mishrashivamcg-wq
+          cards: overview,contributions,languages
+          output-dir: assets
+          commit: true
